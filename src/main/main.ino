@@ -30,7 +30,7 @@ int cw = 0;
 
 #define MAX_TURN 40
 
-float rotZ = 0;
+float rotX = 0;
 Adafruit_BNO055 gyro = Adafruit_BNO055(55);
 sensors_event_t event;
 
@@ -59,14 +59,14 @@ int turnOffset = 0;
 
 void getSensors(void * parameters){
   gyro.getEvent(&event);
-  ini_angle = event.orientation.z;
+  ini_angle = event.orientation.x;
   // get initial robot rotation
 
   for (;;){
     gyro.getEvent(&event);
-    rotZ = event.orientation.z;
+    rotX = event.orientation.x;
 
-    Serial.print("Gyro rot Z: ");Serial.println(rotZ);
+    Serial.print("Gyro roll: ");Serial.println(rotX);
     Serial.println("----------------------------------");
 
     left = uLeft.read();
@@ -91,20 +91,24 @@ void control(void * parameters){
       if (cw == 0){
         if (left > dMax){
           cw = 1;
+          Serial.println("Going clockwise");
         }
         if (right > dMax){
           cw = -1;   
+          Serial.println("Going counter-clockwise");
         }
       }
       // the totally awesome algorithm
-      Timonteo.easeTo(constrain(servo_c + rotZ - angToMatch,servo_c-MAX_TURN,servo_c+MAX_TURN));
+      Timonteo.easeTo(constrain(servo_c + rotX - angToMatch,servo_c-MAX_TURN,servo_c+MAX_TURN));
       delay(100);
     }
     turnOffset++;
     Timonteo.easeTo(servo_c+(MAX_TURN*cw));
-    while (rotZ <= angToMatch) {
+    Serial.println("wall detected: turn...NOW!!!!");
+    while (rotX <= angToMatch) {
       delay(50);
     }
+    Serial.println("We good now, keep going");
   }
 }
 
@@ -118,7 +122,7 @@ void setup() {
   gyro.setExtCrystalUse(true);
 
   Timonteo.attach(18, 90);
-  Timonteo.setSpeed(150);
+  Timonteo.setSpeed(170);
 
   pinMode(BUTTON, INPUT_PULLUP);
 
