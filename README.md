@@ -1,7 +1,7 @@
-Encore | WRO-Futuros Ingenieros 2025 | PAN
+Encore | WRO-Futuros Ingenieros 2026 | PAN
 ====
 
-Este es el repositorio oficial del equipo Encore. Somos representantes del colegio La Salle-Margarita en las regionales de Colón, Panamá de la World Robot Olympiad (WRO) 2025 en la categoría de Futuros Ingenieros.
+Este es el repositorio oficial del equipo Encore. Somos representantes del colegio La Salle-Margarita en las regionales de Colón, Panamá de la World Robot Olympiad (WRO) 2026 en la categoría de Futuros Ingenieros.
 
 La categoría de futuros ingenieros está enfocada en el diseño y la implementación de vehículos autónomos a escala. El desafío consiste en desarrollar un sistema capaz de navegar un circuito predefinido, identificando y superando obstáculos de forma autónoma mediante el procesamiento de datos de su entorno.
 
@@ -56,7 +56,7 @@ El desarrollo del robot partió de un chasis Ackerman prefabricado para establec
 
 ### Descripción del chasis
 
-El chasis original de metal, aunque resistente, elevaba el peso total del robot a 1700 g, una masa excesiva que limitaba la agilidad y sobrecargaba el sistema de propulsión. Para resolver esto, se llevó a cabo un proceso de optimización de materiales, reemplazando las placas de metal por láminas de acrílico cortadas a medida. Esta modificación fue un éxito, reduciendo el peso total a 1217 g y permitiendo un diseño más limpio y optimizado con perforaciones específicas para nuestros componentes. La estructura se mantuvo en dos niveles para aislar la electrónica de las vibraciones mecánicas.
+El chasis original de metal, aunque resistente, elevaba el peso total del robot a 1700 g, una masa excesiva que limitaba la agilidad y sobrecargaba el sistema de propulsión. Para resolver esto, se llevó a cabo un proceso de optimización de materiales, reemplazando las placas de metal por diseños impresos en 3D. Esta modificación fue un éxito, reduciendo el peso total a aproximadamente 675 g y permitiendo un diseño más limpio y optimizado con perforaciones específicas para nuestros componentes. La estructura se mantuvo en dos niveles para aislar la electrónica de las vibraciones mecánicas.
 
 ### Sistema de dirección
 
@@ -68,40 +68,44 @@ El diseño inicial del sistema de propulsión priorizaba la velocidad con una re
 
 ### Diseño Eléctrico
 
-La arquitectura eléctrica evolucionó a un sistema de control distribuido para maximizar la eficiencia y la fiabilidad.
+La arquitectura eléctrica evolucionó a un sistema compacto y eficiente para maximizar la confiabilidad del robot.
 
-* Raspberry Pi 5 (Cerebro Principal): Se encarga de las tareas de alta carga computacional, como el procesamiento de imágenes de la webcam y la ejecución de la lógica de decisión principal.
+* ESP32 (Unidad de control principal): Actualmente se utiliza una ESP32 única, sin Arduino adicional, como cerebro del sistema. Se encarga de ejecutar la lógica de control, leer los sensores y gestionar los actuadores.
 
-* Arduino Nano (Co-procesador de Tiempo Real): Se añadió para gestionar todas las tareas de bajo nivel que requieren una temporización precisa. El Nano controla directamente el driver de motores L298N, el servomotor, el sensor ultrasónico HC-SR04 y el giroscopio MPU6050, ejecutando los comandos que recibe de la Pi.
+* Driver TB6612FNG: Sustituyó al L298N y se utiliza para controlar de forma eficiente los motores, mejorando la gestión de corriente y la estabilidad del sistema.
+
+* Sensores HC-SR04: Se emplearon tres sensores ultrasónicos en la parte frontal para detectar obstáculos y medir distancias en tiempo real.
+
+* Giroscopio BNO055: Se incorporó para obtener mediciones de orientación y mejorar la estabilidad del movimiento y la navegación del robot.
+
+* Servo para el manejo: Se utiliza para controlar la dirección del vehículo de forma precisa y responsiva.
 ![imagen](<schemes/circuito.png> "imagen")
 
 ### Gestión de la energía
 
-La estabilidad energética fue un desafío crítico. Inicialmente, al alimentar el Arduino Nano desde el puerto USB de la Raspberry Pi, la demanda de corriente combinada provocaba caídas de voltaje que reiniciaban la Pi. La solución fue diseñar un sistema de alimentación dual e independiente:
+La estabilidad energética se resolvió con un sistema de alimentación más simple y compacto:
 
-* Una power bank de 10000mAh se dedica exclusivamente a la Raspberry Pi.
+* Un power bank de 10000mAh se utiliza para alimentar el motor y el servo.
 
-* Dos baterías de 9V en paralelo alimentan el driver L298N, y la salida regulada de 5V de este mismo driver se utiliza para alimentar el Arduino y sus periféricos. Esta configuración aísla los componentes y garantiza un funcionamiento estable.
+* Dos baterías 18650 en conjunto proporcionan la energía necesaria para la ESP32, con salida de 5V para alimentar la unidad de control y sus periféricos. Esta configuración permite un funcionamiento estable y reduce la complejidad del sistema.
 
 ### Diseño del Código y Programación
 
-La arquitectura del software se basa en un modelo de control distribuido que utiliza las fortalezas de cada procesador:
+La arquitectura del software se basa en un enfoque integrado en una sola placa de control:
 
-* Raspberry Pi 5 (Python): Actúa como el cerebro principal. Se encarga de la visión por computadora con OpenCV para analizar la pista y los obstáculos. Ejecuta la lógica de decisión de alto nivel y envía comandos simples al Arduino.
+* ESP32 (C++): Actúa como el cerebro principal del robot. Se encarga de la lectura de los sensores ultrasónicos, del giroscopio BNO055, de la lógica de decisión y del control de los actuadores, incluyendo los motores y el servo de dirección.
 
-* Arduino Nano (C++): Funciona como un controlador de tiempo real. Su única tarea es ejecutar los comandos recibidos de la Pi con precisión. Gestiona directamente el control de los motores, el servo y la lectura de los sensores (ultrasónico y giroscopio), garantizando movimientos fluidos y sin interrupciones.
-
-Ambos se comunican a través del puerto serie (USB), permitiendo que la Pi se concentre en "pensar" y el Arduino en "actuar".
+Este enfoque permite reducir la complejidad del sistema, minimizar puntos de fallo y mejorar la respuesta del robot en tiempo real.
 
 ### Demostración
 
-Después de un arduo ciclo de desarrollo y pruebas, el robot es capaz de cumplir con los requisitos de la primera ronda, demostrando una navegación autónoma y la capacidad de detectar y esquivar obstáculos. El siguiente video muestra el funcionamiento actual del robot.
+Después de un arduo ciclo de desarrollo y pruebas, el robot es capaz de cumplir con los requisitos de la primera ronda, demostrando una navegación autónoma y la capacidad de detectar y esquivar obstáculos.
 
 ### Características por mejorar
 
 Basado en los resultados de la primera competencia y las pruebas continuas, el equipo ha identificado las siguientes áreas clave para el desarrollo futuro:
 
-* Reducir la Latencia del Bucle de Control: Optimizar el código y la comunicación serie entre la Pi y el Arduino para lograr reacciones más rápidas y una navegación más fluida.
+* Reducir la Latencia del Bucle de Control: Optimizar el código y la comunicación interna entre la ESP32 y los actuadores para lograr reacciones más rápidas y una navegación más fluida.
 
 * Mejorar la Fiabilidad de las Conexiones: Migrar las conexiones del protoboard a una solución más permanente, como una PCB diseñada a medida o una protoboard soldada, para eliminar los falsos contactos.
 
