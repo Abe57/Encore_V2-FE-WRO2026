@@ -33,6 +33,3 @@ Este directorio contiene las 6 vistas principales del robot Encore V2 para la co
 - Baterías y módulo de distribución de potencia
 - Módulo de comunicación
 - Cableado de conexión
-
----
-*Última actualización: 2026-07-16*

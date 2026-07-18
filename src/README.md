@@ -41,8 +41,3 @@ El sketch está diseñado para trabajar con:
 - El código utiliza `FreeRTOS` mediante `xTaskCreatePinnedToCore` para ejecutar tareas en núcleos separados.
 - La comunicación serial se usa para depurar y monitorear los valores de los sensores en tiempo real.
 - El servo se controla con la librería `ServoEasing`.
-
-## Archivos relevantes
-
-- `src/main/main.ino`: archivo principal del firmware.
-- `src/README.md`: documentación del software de control.

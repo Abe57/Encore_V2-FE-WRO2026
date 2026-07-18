@@ -2,6 +2,8 @@
 
 Este directorio contiene los diseños principales impresos en 3D del robot, incluyendo las estructuras base, los soportes de motor y eje, así como los soportes para los sensores ultrasónicos.
 
+![Modelo](modelo.gif)
+
 ## 1. Placa inferior
 La placa inferior es la estructura base del robot. Presenta huecos para los tornillos del servo, los soportes, el soporte del motor y el soporte del eje. En su parte inferior cuenta con una extrusión que cubre la mayor parte de la placa, lo que le proporciona mayor grosor y estabilidad en las zonas donde más se necesita.
 
