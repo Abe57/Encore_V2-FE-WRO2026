@@ -24,12 +24,16 @@ Este directorio contiene las 6 vistas principales del robot Encore V2 para la co
 ![Vista inferior](./back-view.png)
 *Vista desde atras mostrando la transmisión.*
 
+### 6. Vista Inferior
+![Vista inferior](/v-photos/bottom-view.jpeg)
+*Vista desde abajo mostrando la tornilleria y refuerzos estructurales.*
+
+
 ## Componentes Principales Visibles
 
 - Plataforma de chassís azul
-- Motores DC con ruedas de tracción
-- Sistema de sensores ultrasónicos (HC-SR04)
-- Placa de control con microcontrolador
-- Baterías y módulo de distribución de potencia
-- Módulo de comunicación
+- Motor DC con ruedas de tracción
+- Sistema de sensores ultrasónicos HC-SR04
+- Microcontrolador ESP32
+- Baterías 18650 y módulo de distribución de potencia
 - Cableado de conexión
