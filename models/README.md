@@ -38,5 +38,3 @@ Los engranes utilizados en el sistema de transmisión son de 36 dientes y 28 die
 
 ## Modificación del engrane de 36 dientes
 El engrane de 36 dientes fue modificado para volverse sólido por dentro y adaptarse al motor, lo que mejora su compatibilidad y resistencia dentro del sistema mecánico.
-
-

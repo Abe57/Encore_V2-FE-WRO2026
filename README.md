@@ -1,7 +1,7 @@
 Encore | WRO-Futuros Ingenieros 2026 | PAN
 ====
 
-Este es el repositorio oficial del equipo Encore. Somos representantes del colegio La Salle-Margarita en las regionales de Colón, Panamá de la World Robot Olympiad (WRO) 2026 en la categoría de Futuros Ingenieros.
+Este es el repositorio oficial del equipo Encore V2. Somos representantes del colegio La Salle-Margarita en las regionales de Colón, Panamá de la World Robot Olympiad (WRO) 2026 en la categoría de Futuros Ingenieros.
 
 La categoría de futuros ingenieros está enfocada en el diseño y la implementación de vehículos autónomos a escala. El desafío consiste en desarrollar un sistema capaz de navegar un circuito predefinido, identificando y superando obstáculos de forma autónoma mediante el procesamiento de datos de su entorno.
 
