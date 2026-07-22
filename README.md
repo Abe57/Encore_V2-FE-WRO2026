@@ -50,6 +50,10 @@ Foto del equipo, de izquierda a derecha **José Heráldez, Abel Herrera y Pablo 
 ![Vista inferior](v-photos/back-view.png)
 *Vista desde atras mostrando la transmisión.*
 
+### 6. Vista Inferior
+![Vista inferior](/v-photos/bottom-view.jpeg)
+*Vista desde abajo mostrando la tornilleria y refuerzos estructurales.*
+
 ### Configuración general
 
 El desarrollo del robot partió de un chasis Ackerman prefabricado para establecer una base mecánica sólida y acelerar el prototipado. Sin embargo, este punto de partida se convirtió en el primer desafío de ingeniería, ya que el diseño original presentaba problemas significativos de peso y una configuración de propulsión y dirección que requería un rediseño completo para cumplir con los objetivos de rendimiento del equipo.
